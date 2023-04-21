@@ -1,54 +1,66 @@
+import { ServicioHabitaciones } from "../services/ServicioHabitaciones.js"
+
 export class ControladorHabitaciones {
     constructor() {}
   
-    registrandoHabitacion(peticion, respuesta) {
+    async registrandoHabitacion(peticion, respuesta) {
         let datosHabitacion = peticion.body
-        console.log(datosHabitacion)
+        let servicioHabitacion = new ServicioHabitaciones()
       try {
+        await servicioHabitacion.registrarHabitacion(datosHabitacion)
         respuesta.status(200).json({
-          mensaje: "Succesfull, adding the data"
+          "mensaje": "Succesfull, adding the data"
         })
       } catch (errorPeticion) {
         respuesta.status(400).json({
-          mensaje: "Error in the data ma bro" + errorPeticion
+          "mensaje": "Error in the data ma bro" + errorPeticion
         })
       }
     }
   
-    buscandoHabitacion(peticion, respuesta) {
+    async buscandoHabitacion(peticion, respuesta) {
         let idHabitacion=peticion.params.idhabitacion
-        console.log(idHabitacion)
+        let servicioHabitacion = new ServicioHabitaciones()
+        
       try {
         respuesta.status(200).json({
-          mensaje: "Succesfull, faunding the room" + idHabitacion
+          "mensaje": "Succesfull, faunding the room",
+          "habitacion": await servicioHabitacion.buscarlo(idHabitacion)
+
         })
       } catch (errorPeticion) {
         respuesta.status(400).json({
-          mensaje: "Error in the found ma bro" + errorPeticion
+          "mensaje": "Error in the found ma bro" + errorPeticion
         })
       }
     }
   
-    buscandoTodasHabitaciones(peticion, respuesta) {
+    async buscandoTodasHabitaciones(peticion, respuesta) {
+      let servicioHabitacion = new ServicioHabitaciones()
       try {
         respuesta.status(200).json({
-          mensaje: "Succesfull, faunding the rooms"
+          "mensaje": "Succesfull, faunding the rooms",
+          "haitaciones": await servicioHabitacion.buscarTodasHabitaciones()
         })
       } catch (errorPeticion) {
         respuesta.status(400).json({
-          mensaje: "Error in the found ma bro" + errorPeticion
+          "mensaje": "Error in the found ma bro" + errorPeticion
         })
       }
     }
   
-    editandoHabitaciones(peticion, respuesta) {
+    async editandoHabitaciones(peticion, respuesta) {
+      let idHabitacion= peticion.params.idHabitacion
+      let datosHabitacion= peticion.body
+      let servicioHabitacion = new ServicioHabitaciones()
       try {
+        await servicioHabitacion.editarHabitaciones(idHabitacion,datosHabitacion)
         respuesta.status(200).json({
-          mensaje: "Succesfull, modified the room"
+          "mensaje": "Succesfull, modified the room"
         })
       } catch (errorPeticion) {
         respuesta.status(400).json({
-          mensaje: "Error in the modified ma bro" + errorPeticion
+          "mensaje": "Error in the modified ma bro" + errorPeticion
         })
       }
     }

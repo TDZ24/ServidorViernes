@@ -11,6 +11,7 @@ rutas.post('/registrarhabitacion', controladorHabitacion.registrandoHabitacion)
 rutas.get('/buscarhabitaciones', controladorHabitacion.buscandoTodasHabitaciones)
 rutas.get('/buscarhabitacion/:idhabitacion', controladorHabitacion.buscandoHabitacion)
 rutas.put('/actualizarhabitacion/:idhabitacion' , controladorHabitacion.editandoHabitaciones)
+
 rutas.post('/registrarreserva', controladorreservation.registrandoReservas)
 rutas.get('/buscarreservas', controladorreservation.buscandoTodasReservas)
 rutas.get('/buscarreserva/:idreserva', controladorreservation.buscandoReservas)
