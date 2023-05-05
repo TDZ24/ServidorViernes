@@ -4,10 +4,6 @@ const Schema = mongoose.Schema;
 
 /* Se Construye el esquema personalizado para la informacion name, lastname, tel, date initial, date final, number of persons, id*/
 const Reserva = new Schema({
-    id:{
-        type: String,
-        required: true
-    },
     nombre:{
         type: String,
         required: true
@@ -20,19 +16,27 @@ const Reserva = new Schema({
         type: Number,
         required: true
     },
-    fechainicial:{
+    fechaInicial:{
         type: Date,
         required: true
     },
-    fechafinal:{
+    fechaFinal:{
         type: Date,
         required: true
     },
     numeropersona:{
         type: Number,
         required: true
+    },
+    costoReserva:{
+        type: Number,
+        default:0
+    },
+    idHabitacion:{
+        type: String, 
+        required: true
     }
 
 })
 
-export const modeloHabitacion = mongoose.model('Reserva')
+export const modeloReserva = mongoose.model('Reserva', Reserva)

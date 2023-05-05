@@ -16,7 +16,7 @@ const Habitacion = new Schema({
         type: String,
         required: true
     },
-    precio:{
+    precioNoche:{
         type: Number,
         required: true
     },

@@ -14,7 +14,7 @@ export class ServicioHabitaciones{
         return habitacionesConsultadas
     }
  
-    async buscarlo(idHabitacion){
+    async buscarHabitacion(idHabitacion){
        let habitacionConsultada = await modeloHabitacion.findById(idHabitacion)
        return habitacionConsultada
     }
